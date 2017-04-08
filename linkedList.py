@@ -42,7 +42,17 @@ class LinkedList(object):
             new_element.next = self.head
             self.head = new_element
 
-
+    def delete(self, value):
+        current = self.head
+        previous = None
+        while current.value != value and current.next:
+            previous = current
+            current = current.next
+        if current.value == value:
+            if previous:
+                previous.next = current.next
+            else:
+                self.head = current.next
 
 # Test cases
 # Set up some Elements
@@ -70,3 +80,13 @@ ll.insert(e4,3)
 
 print "get value on specific position(1):-"
 print ll.get_position(1).value
+
+
+# Test delete
+ll.delete(1)
+# Should print 2 now
+print ll.get_position(1).value
+# Should print 4 now
+print ll.get_position(2).value
+# Should print 3 now
+print ll.get_position(3).value
